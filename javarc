@@ -1,0 +1,19 @@
+switchjdk(){
+	if [ "$version" = "" ]; then
+		export OLDPATH=$PATH
+	fi
+	echo "Please select jdk version (8/[11]):"
+	read version
+	if [ "$version" = "8" ]; then
+		export JAVA_HOME=/usr/local/share/jdk8u261
+	else
+		if [ "$version" = "11" ]; then
+			export JAVA_HOME=/usr/local/share/jdk-11.0.8+10
+		else
+			export version="0"
+			echo "Wrong Number!"
+		fi
+	fi
+	export CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar
+	export PATH=$OLDPATH:$JAVA_HOME/bin
+}
